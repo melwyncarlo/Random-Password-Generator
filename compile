@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# Copyright 2021 Melwyn Francis Carlo
+
+clear
+clear
+
+gcc -O3 -Wall -std=c17 -Wextra -Wpedantic -pedantic-errors randpass.c -o randpass
+
