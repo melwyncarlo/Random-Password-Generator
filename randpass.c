@@ -64,19 +64,19 @@ char get_random_character(CharMode input_charMode)
     switch (input_charMode)
     {
         case LOWERCASE_LETTER:
-            randomCharacter = LOWERCASE_LETTERS_ASCII_LIST [rand() % 26];
+            randomCharacter = (char) LOWERCASE_LETTERS_ASCII_LIST [rand() % 26];
             break;
 
         case UPPERCASE_LETTER:
-            randomCharacter = UPPERCASE_LETTERS_ASCII_LIST [rand() % 26];
+            randomCharacter = (char) UPPERCASE_LETTERS_ASCII_LIST [rand() % 26];
             break;
 
         case NUMERICAL_DIGIT:
-            randomCharacter = NUMERICAL_DIGITS_ASCII_LIST [rand() % 10];
+            randomCharacter = (char) NUMERICAL_DIGITS_ASCII_LIST [rand() % 10];
             break;
 
         case SPECIAL_CHARACTER:
-            randomCharacter = SPECIAL_CHARACTERS_ASCII_LIST [rand() % 33];
+            randomCharacter = (char) SPECIAL_CHARACTERS_ASCII_LIST [rand() % 33];
             break;
     }
 
@@ -244,12 +244,16 @@ int main(int argc, char **argv)
         discardedChars [discardedChars_n - 1] = argv [i] [0];
     }
 
-    const char *generatedPassword = randpass( maxPassChars, 
-                                              allowedCharSet, 
-                                              discardedChars_n, 
-                                              discardedChars);
+    char *generatedPassword = randpass( maxPassChars, 
+                                        allowedCharSet, 
+                                        discardedChars_n, 
+                                        discardedChars);
 
     printf("\n Result: %s\n\n", generatedPassword);
+
+    free(generatedPassword);
+
+    generatedPassword = NULL;
 
     return 0;
 }
